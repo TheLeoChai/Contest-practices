@@ -1,0 +1,65 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int
+main ()
+{
+  std::cout << "Hello World" << std::endl;
+  int varN, size, tempVar;
+  std::cout << "please insert number" << std::endl;
+  std::cin >> size;
+  long int array[size];
+  for (int i = 0; i < size; i++)
+    {
+      std::cin >> array[i];
+    }				//get amount of data
+  for (int j = 0; j < size; j++)
+    {
+      for (int k = 0; k < size; k++)
+	{
+	  if (array[k] > array[k + 1])
+	    {
+	      int temp = array[k];
+	      array[k] = array[k + 1];
+	      array[k + 1] = temp;
+	    }
+	}
+    }				//change order of the variables to small to biggest
+  float proc[size - 1];
+  for (int l = 0; l < size - 1; l++)
+    {
+      proc[l] = (array[l + 1] - array[l]) / 2;
+    }				//find average of every close points
+
+  float array2[size - 2];
+  int x;
+  for (int m = 0; m < size - 2; m++)
+    {
+      x = m;
+      array2[x] = proc[x] + proc[x + 1];
+    }				//add averages that are close together
+
+  float small = array2[0];
+  for (int n = 0; n < size - 2; n++)
+    {
+      if (array2[n] < small)
+	{
+	  small = array2[n];
+	}
+    }				//find smallest number
+  std::cout << std::fixed;
+  std::cout << std::setprecision (1);	//set cout options
+  std::cout << small << std::endl;	//print smallest number
+
+  return 0;
+}
